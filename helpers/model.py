@@ -5,7 +5,7 @@ import torch
 from helpers import file
 from models.deep_seek_model import DeepSeekModel
 from models.gguf_model import GGUFModel
-from models.grok import GrokModel
+from models.grok_model import GrokModel
 from models.local_model import LocalModel
 from models.openai_model import OpenAIModel
 
