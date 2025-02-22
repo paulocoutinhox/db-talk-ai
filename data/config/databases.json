@@ -1,0 +1,8 @@
+[
+    {
+        "name": "Sample SQLite DB",
+        "type": "sql",
+        "connection_string": "sqlite:///data/sample/sample.db",
+        "schema": "sample.txt"
+    }
+]

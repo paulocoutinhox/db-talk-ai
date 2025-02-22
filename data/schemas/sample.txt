@@ -1,0 +1,163 @@
+TABLE: US_CITIES
+Columns:
+- ID (INTEGER) PRIMARY KEY  NULLABLE
+- ID_STATE (INTEGER)   NOT NULL
+- CITY (TEXT(50))   NOT NULL
+- COUNTY (TEXT(50))   NOT NULL
+- LATITUDE (DOUBLE)   NOT NULL
+- LONGITUDE (DOUBLE)   NOT NULL
+
+Foreign Keys:
+- ID_STATE → US_STATES.ID ON DELETE NO ACTION ON UPDATE NO ACTION
+
+TABLE: US_STATES
+Columns:
+- ID (INTEGER) PRIMARY KEY  NULLABLE
+- STATE_CODE (TEXT(2))   NOT NULL
+- STATE_NAME (TEXT(50))   NOT NULL
+
+TABLE: albums
+Columns:
+- AlbumId (INTEGER) PRIMARY KEY  NOT NULL
+- Title (NVARCHAR(160))   NOT NULL
+- ArtistId (INTEGER)   NOT NULL
+
+Foreign Keys:
+- ArtistId → artists.ArtistId ON DELETE NO ACTION ON UPDATE NO ACTION
+
+Indexes:
+- IFK_AlbumArtistId (NON-UNIQUE): ArtistId
+
+TABLE: artists
+Columns:
+- ArtistId (INTEGER) PRIMARY KEY  NOT NULL
+- Name (NVARCHAR(120))   NULLABLE
+
+TABLE: customers
+Columns:
+- CustomerId (INTEGER) PRIMARY KEY  NOT NULL
+- FirstName (NVARCHAR(40))   NOT NULL
+- LastName (NVARCHAR(20))   NOT NULL
+- Company (NVARCHAR(80))   NULLABLE
+- Address (NVARCHAR(70))   NULLABLE
+- City (NVARCHAR(40))   NULLABLE
+- State (NVARCHAR(40))   NULLABLE
+- Country (NVARCHAR(40))   NULLABLE
+- PostalCode (NVARCHAR(10))   NULLABLE
+- Phone (NVARCHAR(24))   NULLABLE
+- Fax (NVARCHAR(24))   NULLABLE
+- Email (NVARCHAR(60))   NOT NULL
+- SupportRepId (INTEGER)   NULLABLE
+
+Foreign Keys:
+- SupportRepId → employees.EmployeeId ON DELETE NO ACTION ON UPDATE NO ACTION
+
+Indexes:
+- IFK_CustomerSupportRepId (NON-UNIQUE): SupportRepId
+
+TABLE: employees
+Columns:
+- EmployeeId (INTEGER) PRIMARY KEY  NOT NULL
+- LastName (NVARCHAR(20))   NOT NULL
+- FirstName (NVARCHAR(20))   NOT NULL
+- Title (NVARCHAR(30))   NULLABLE
+- ReportsTo (INTEGER)   NULLABLE
+- BirthDate (DATETIME)   NULLABLE
+- HireDate (DATETIME)   NULLABLE
+- Address (NVARCHAR(70))   NULLABLE
+- City (NVARCHAR(40))   NULLABLE
+- State (NVARCHAR(40))   NULLABLE
+- Country (NVARCHAR(40))   NULLABLE
+- PostalCode (NVARCHAR(10))   NULLABLE
+- Phone (NVARCHAR(24))   NULLABLE
+- Fax (NVARCHAR(24))   NULLABLE
+- Email (NVARCHAR(60))   NULLABLE
+
+Foreign Keys:
+- ReportsTo → employees.EmployeeId ON DELETE NO ACTION ON UPDATE NO ACTION
+
+Indexes:
+- IFK_EmployeeReportsTo (NON-UNIQUE): ReportsTo
+
+TABLE: genres
+Columns:
+- GenreId (INTEGER) PRIMARY KEY  NOT NULL
+- Name (NVARCHAR(120))   NULLABLE
+
+TABLE: invoice_items
+Columns:
+- InvoiceLineId (INTEGER) PRIMARY KEY  NOT NULL
+- InvoiceId (INTEGER)   NOT NULL
+- TrackId (INTEGER)   NOT NULL
+- UnitPrice (NUMERIC(10, 2))   NOT NULL
+- Quantity (INTEGER)   NOT NULL
+
+Foreign Keys:
+- TrackId → tracks.TrackId ON DELETE NO ACTION ON UPDATE NO ACTION
+- InvoiceId → invoices.InvoiceId ON DELETE NO ACTION ON UPDATE NO ACTION
+
+Indexes:
+- IFK_InvoiceLineInvoiceId (NON-UNIQUE): InvoiceId
+- IFK_InvoiceLineTrackId (NON-UNIQUE): TrackId
+
+TABLE: invoices
+Columns:
+- InvoiceId (INTEGER) PRIMARY KEY  NOT NULL
+- CustomerId (INTEGER)   NOT NULL
+- InvoiceDate (DATETIME)   NOT NULL
+- BillingAddress (NVARCHAR(70))   NULLABLE
+- BillingCity (NVARCHAR(40))   NULLABLE
+- BillingState (NVARCHAR(40))   NULLABLE
+- BillingCountry (NVARCHAR(40))   NULLABLE
+- BillingPostalCode (NVARCHAR(10))   NULLABLE
+- Total (NUMERIC(10, 2))   NOT NULL
+
+Foreign Keys:
+- CustomerId → customers.CustomerId ON DELETE NO ACTION ON UPDATE NO ACTION
+
+Indexes:
+- IFK_InvoiceCustomerId (NON-UNIQUE): CustomerId
+
+TABLE: media_types
+Columns:
+- MediaTypeId (INTEGER) PRIMARY KEY  NOT NULL
+- Name (NVARCHAR(120))   NULLABLE
+
+TABLE: playlist_track
+Columns:
+- PlaylistId (INTEGER) PRIMARY KEY  NOT NULL
+- TrackId (INTEGER) PRIMARY KEY  NOT NULL
+
+Foreign Keys:
+- TrackId → tracks.TrackId ON DELETE NO ACTION ON UPDATE NO ACTION
+- PlaylistId → playlists.PlaylistId ON DELETE NO ACTION ON UPDATE NO ACTION
+
+Indexes:
+- IFK_PlaylistTrackTrackId (NON-UNIQUE): TrackId
+
+TABLE: playlists
+Columns:
+- PlaylistId (INTEGER) PRIMARY KEY  NOT NULL
+- Name (NVARCHAR(120))   NULLABLE
+
+TABLE: tracks
+Columns:
+- TrackId (INTEGER) PRIMARY KEY  NOT NULL
+- Name (NVARCHAR(200))   NOT NULL
+- AlbumId (INTEGER)   NULLABLE
+- MediaTypeId (INTEGER)   NOT NULL
+- GenreId (INTEGER)   NULLABLE
+- Composer (NVARCHAR(220))   NULLABLE
+- Milliseconds (INTEGER)   NOT NULL
+- Bytes (INTEGER)   NULLABLE
+- UnitPrice (NUMERIC(10, 2))   NOT NULL
+
+Foreign Keys:
+- MediaTypeId → media_types.MediaTypeId ON DELETE NO ACTION ON UPDATE NO ACTION
+- GenreId → genres.GenreId ON DELETE NO ACTION ON UPDATE NO ACTION
+- AlbumId → albums.AlbumId ON DELETE NO ACTION ON UPDATE NO ACTION
+
+Indexes:
+- IFK_TrackAlbumId (NON-UNIQUE): AlbumId
+- IFK_TrackGenreId (NON-UNIQUE): GenreId
+- IFK_TrackMediaTypeId (NON-UNIQUE): MediaTypeId

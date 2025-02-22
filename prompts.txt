@@ -1,0 +1,6 @@
+- Extract the domain name from a customer's email address, specifically the part after the '@' symbol.
+- What is the sum and the name of each of the track genres order by biggest?
+- What was the total purchased in 2012?
+- What is the sum and the name of each country have sells order by first five biggest?
+- What was the total purchased separated by year?
+- What is the first 100 cities around "new york" city for 150km using latitude and longitude?
