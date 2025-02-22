@@ -4,6 +4,7 @@ import torch
 
 from helpers import file
 from models.deep_seek_model import DeepSeekModel
+from models.gemini_model import GeminiModel
 from models.gguf_model import GGUFModel
 from models.grok_model import GrokModel
 from models.local_model import LocalModel
@@ -16,6 +17,7 @@ def load_models():
     models.append(OpenAIModel())
     models.append(DeepSeekModel())
     models.append(GrokModel())
+    models.append(GeminiModel())
 
     # Add fixed local models
     models.append(

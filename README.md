@@ -191,6 +191,7 @@ db-talk-ai/
 │   └── openai_model.py     # Integration with OpenAI models
 │   └── deep_seek_model.py  # Integration with DeepSeek models
 │   └── grok_model.py       # Integration with Grok models
+│   └── gemini_model.py     # Integration with Gemini models
 │
 ├── extras/                 # Extra resources (images, icons, etc.)
 │
