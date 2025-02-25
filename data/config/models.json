@@ -1,0 +1,7 @@
+[
+  {
+    "name": "Qwen 2.5 3B Instruct",
+    "path": "Qwen/Qwen2.5-3B-Instruct",
+    "torch_dtype": "auto"
+  }
+]
