@@ -88,6 +88,26 @@ model_names = [model.name() for model in models]
 selected_model_name = st.sidebar.selectbox("Select AI Model:", model_names)
 selected_model = next((m for m in models if m.name() == selected_model_name), None)
 
+model_variants = selected_model.get_variants()
+
+if model_variants:
+    variant_keys = list(model_variants.keys())
+    default_variant = selected_model.get_default_variant()
+
+    # Pre-select the default variant if available
+    selected_model_variant = st.sidebar.selectbox(
+        "Select Model Variant:",
+        variant_keys,
+        format_func=lambda key: model_variants[key],
+        index=(
+            variant_keys.index(default_variant)
+            if default_variant in variant_keys
+            else 0
+        ),
+    )
+else:
+    selected_model_variant = selected_model.get_default_variant()
+
 
 # Sidebar - Chart Options
 st.sidebar.subheader("📊 Chart Options")
@@ -137,7 +157,11 @@ if st.button("🚀 Generate"):
 
         # Generate query using the selected model
         try:
-            query = selected_model.run(messages)
+            query = selected_model.run(
+                messages,
+                variant=selected_model_variant,
+            )
+
             query = response.clean(query)
 
             # Validate the generated query
