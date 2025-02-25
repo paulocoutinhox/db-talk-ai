@@ -40,3 +40,8 @@ def get_schema_file(name):
 def get_databases_file():
     """Get the databases file path."""
     return os.path.join(get_config_folder(), "databases.json")
+
+
+def get_models_file():
+    """Get the models file path."""
+    return os.path.join(get_config_folder(), "models.json")

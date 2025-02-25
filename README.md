@@ -18,6 +18,16 @@
 - **Streamlit web interface** for easy interaction
 - **Secure database connection management** using a configuration file
 - **Modular database support** sql databases
+- **Dynamic model discovery** for both:
+  - Local GGUF models (auto-detected from the `data/models/` directory)
+  - Local Transformer models (loaded from `data/config/models.json`)
+- Supports various AI providers:
+  - **OpenAI GPT**
+  - **DeepSeek AI**
+  - **Gemini AI**
+  - **Grok AI**
+  - **Local Transformer models** (using Hugging Face)
+  - **Local GGUF models** (using GPT4All)
 - Supports a custom root directory using the **`DB_TALK_AI_ROOT`** environment variable
 
 ## 📞 Installation
@@ -64,43 +74,11 @@ streamlit run app.py
 
 ## ⚙️ Configuration
 
-### **1. Set API Keys (Optional)**
+### **1. Set API Keys (For Cloud Models)**
 
-#### **OpenAI API Key**
-If using OpenAI, set your API key as an environment variable:
+For setting up cloud-based models like **OpenAI GPT**, **DeepSeek AI**, **Gemini AI**, and **Grok AI**, please refer to the separate guide:
 
-- **Linux/macOS**
-  ```sh
-  export OPENAI_API_KEY="your-openai-api-key"
-  ```
-
-- **Windows (Command Prompt)**
-  ```sh
-  set OPENAI_API_KEY="your-openai-api-key"
-  ```
-
-- **Windows (PowerShell)**
-  ```powershell
-  $env:OPENAI_API_KEY="your-openai-api-key"
-  ```
-
-#### **DeepSeek API Key**
-If using DeepSeek, set your API key as an environment variable:
-
-- **Linux/macOS**
-  ```sh
-  export DEEPSEEK_API_KEY="your-deepseek-api-key"
-  ```
-
-- **Windows (Command Prompt)**
-  ```sh
-  set DEEPSEEK_API_KEY="your-deepseek-api-key"
-  ```
-
-- **Windows (PowerShell)**
-  ```powershell
-  $env:DEEPSEEK_API_KEY="your-deepseek-api-key"
-  ```
+📖 [Cloud Models Configuration](docs/CLOUD_MODELS.md)
 
 ### **2. Set Custom Root Directory (Optional)**
 You can specify a custom root directory by setting the **`DB_TALK_AI_ROOT`** environment variable. If set, the app will look for the `data/` directory under this path instead of the default local `data/`.
@@ -170,54 +148,55 @@ Configure the `data/config/databases.json` file (or `{DB_TALK_AI_ROOT}/data/conf
 db-talk-ai/
 │
 ├── README.md               # Project documentation
-├── app.py                  # Main application entry point (runs the Streamlit interface)
-├── requirements.txt        # List of required Python dependencies
-├── requirements-gguf.txt   # List of required Python dependencies for GGUF models
+├── app.py                  # Main entry point (Streamlit interface)
+├── requirements.txt        # List of core dependencies
+├── requirements-gguf.txt   # Dependencies for GGUF models
 │
-├── data/                   # Data storage (or custom root if using DB_TALK_AI_ROOT)
-│   ├── config/             # Database configuration files
-│   │   └── databases.json  # Database connection configurations
-│   ├── models/             # Local AI model files
-│   │   └── AnyModel.gguf   # Example local AI model file
-│   ├── sample/             # Sample databases
-│   │   └── sample.db       # Example SQLite database for testing
+├── data/                   # Data storage and configurations
+│   ├── config/             # Configuration files
+│   │   ├── databases.json  # Database connection configurations
+│   │   └── models.json     # Local AI model configurations (path, dtype, etc.)
+│   ├── models/             # Local GGUF AI model files
+│   │   └── Llama-3.2-3B-Instruct-Q5_K_M.gguf  # Example local GGUF model
+│   ├── sample/             # Sample databases for testing
+│   │   └── sample.db       # Example SQLite database
 │   └── schemas/            # Generated database schema files
-│       └── sample.txt      # Example database schema file
+│       └── sample.txt      # Example schema output file
 │
-├── models/                 # AI model interfaces and implementations
-│   ├── base_model.py       # Base class for AI models
-│   ├── local_model.py      # Local AI model implementation using Torch
-│   ├── gguf_model.py       # Local AI model implementation using GGUF files
-│   └── openai_model.py     # Integration with OpenAI models
-│   └── deep_seek_model.py  # Integration with DeepSeek models
-│   └── grok_model.py       # Integration with Grok models
-│   └── gemini_model.py     # Integration with Gemini models
+├── models/                 # AI model implementations
+│   ├── base_model.py       # Abstract base class for AI models
+│   ├── local_model.py      # Local model implementation using Hugging Face Transformers
+│   ├── local_gguf_model.py # Local GGUF model implementation using GPT4All
+│   ├── openai_model.py     # Integration with OpenAI API
+│   ├── deep_seek_model.py  # Integration with DeepSeek models
+│   ├── grok_model.py       # Integration with Grok AI models
+│   └── gemini_model.py     # Integration with Gemini AI models
 │
-├── extras/                 # Extra resources (images, icons, etc.)
+├── extras/                 # Additional resources (images, icons, etc.)
 │
-├── helpers/                # Utility functions and helpers
+├── helpers/                # Utility functions
 │   ├── chart.py            # Functions for generating charts
-│   ├── db.py               # Functions for handling database connections
-│   ├── file.py             # File manipulation utilities
-│   ├── model.py            # Functions to manage AI models
-│   ├── prompt.py           # Functions to create database query prompts
-│   ├── response.py         # Functions to handle and clean AI responses
-│   ├── schema.py           # Functions for generating and updating database schemas
+│   ├── db.py               # Database connection handling
+│   ├── file.py             # File system helpers (e.g., loading models)
+│   ├── model.py            # AI model management functions
+│   ├── prompt.py           # Functions to create SQL prompts
+│   ├── response.py         # Functions to process and clean AI responses
+│   ├── schema.py           # Functions to generate database schemas
 │   └── string.py           # String manipulation utilities
 │
-├── db/                     # Modular database connection implementations
+├── db/                     # Database connection implementations
 │   ├── base_database.py    # Base class for database connections
 │   └── sql_database.py     # SQL database connection implementation
 │
 ├── charts/                 # Chart implementations for data visualization
-│   ├── base_chart.py       # Base class for all chart types
-│   ├── bar_chart.py        # Bar chart implementation
-│   ├── line_chart.py       # Line chart implementation
-│   ├── pie_chart.py        # Pie chart implementation
-│   ├── heatmap_chart.py    # Heatmap chart implementation
-│   └── map_chart.py        # Map chart implementation
+│   ├── base_chart.py       # Base class for chart types
+│   ├── bar_chart.py        # Bar chart visualization
+│   ├── line_chart.py       # Line chart visualization
+│   ├── pie_chart.py        # Pie chart visualization
+│   ├── heatmap_chart.py    # Heatmap visualization
+│   └── map_chart.py        # Geographical map chart visualization
 │
-├── prompts.txt             # File containing example prompts for testing queries
+├── prompts.txt             # Example prompts for generating SQL queries
 ```
 
 ## 🤝 Contributing
