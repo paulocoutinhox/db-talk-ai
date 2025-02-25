@@ -26,6 +26,7 @@
   - **DeepSeek AI**
   - **Gemini AI**
   - **Grok AI**
+  - **Anthropic AI**
   - **Local Transformer models** (using Hugging Face)
   - **Local GGUF models** (using GPT4All)
 - Supports a custom root directory using the **`DB_TALK_AI_ROOT`** environment variable
@@ -76,7 +77,7 @@ streamlit run app.py
 
 ### **1. Set API Keys (For Cloud Models)**
 
-For setting up cloud-based models like **OpenAI GPT**, **DeepSeek AI**, **Gemini AI**, and **Grok AI**, please refer to the separate guide:
+For setting up cloud-based models like **OpenAI GPT**, **DeepSeek AI**, **Gemini AI**, **Grok AI** and **Anthropic**, please refer to the separate guide:
 
 📖 [Cloud Models Configuration](docs/CLOUD_MODELS.md)
 
@@ -164,6 +165,7 @@ db-talk-ai/
 │       └── sample.txt      # Example schema output file
 │
 ├── models/                 # AI model implementations
+│   ├── anthropic_model.py  # Integration with Anthropic API
 │   ├── base_model.py       # Abstract base class for AI models
 │   ├── local_model.py      # Local model implementation using Hugging Face Transformers
 │   ├── local_gguf_model.py # Local GGUF model implementation using GPT4All

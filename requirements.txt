@@ -6,3 +6,4 @@ openai
 transformers>=4.45.0
 torch
 accelerate>=0.26.0
+anthropic

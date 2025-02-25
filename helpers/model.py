@@ -1,3 +1,4 @@
+from models.anthropic_model import AnthropicModel
 from models.deep_seek_model import DeepSeekModel
 from models.gemini_model import GeminiModel
 from models.grok_model import GrokModel
@@ -13,6 +14,7 @@ def load_models():
     models.append(DeepSeekModel())
     models.append(GrokModel())
     models.append(GeminiModel())
+    models.append(AnthropicModel())
 
     # Add local models
     local_model = LocalModel()
