@@ -10,8 +10,6 @@ This document explains how to configure API keys for cloud-based models like **O
 - **Gemini AI**
 - **Grok AI**
 
----
-
 ## ⚙️ **How to Set API Keys**
 
 Set the appropriate API keys for each provider as environment variables.
@@ -33,8 +31,6 @@ set OPENAI_API_KEY="your-openai-api-key"
 $env:OPENAI_API_KEY="your-openai-api-key"
 ```
 
----
-
 ### 🔸 **DeepSeek API Key**
 
 #### Linux/macOS:
@@ -51,8 +47,6 @@ set DEEPSEEK_API_KEY="your-deepseek-api-key"
 ```powershell
 $env:DEEPSEEK_API_KEY="your-deepseek-api-key"
 ```
-
----
 
 ### 🔸 **Gemini API Key**
 
@@ -71,8 +65,6 @@ set GEMINI_API_KEY="your-gemini-api-key"
 $env:GEMINI_API_KEY="your-gemini-api-key"
 ```
 
----
-
 ### 🔸 **Grok AI API Key**
 
 #### Linux/macOS:
@@ -90,16 +82,12 @@ set XAI_API_KEY="your-xai-api-key"
 $env:XAI_API_KEY="your-xai-api-key"
 ```
 
----
-
 ## 📌 **Persistent Configuration**
 
 To make these environment variables permanent:
 
 - **Linux/macOS:** Add the export commands to your `~/.bashrc` or `~/.zshrc` file.
 - **Windows:** Set environment variables via **System Properties** > **Advanced** > **Environment Variables**.
-
----
 
 ## ❓ **Troubleshooting**
 
