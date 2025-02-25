@@ -1,7 +1,7 @@
 
 # CLOUD MODELS
 
-This document explains how to configure API keys for cloud-based models like **OpenAI GPT**, **DeepSeek AI**, **Gemini AI**, and **Grok AI**.
+This document explains how to configure API keys for cloud-based models like **OpenAI GPT**, **DeepSeek AI**, **Gemini AI**, **Grok AI** and **Anthropic AI**.
 
 ## 🔑 **Supported API Providers**
 
@@ -9,6 +9,7 @@ This document explains how to configure API keys for cloud-based models like **O
 - **DeepSeek AI**
 - **Gemini AI**
 - **Grok AI**
+- **Anthropic AI**
 
 ## ⚙️ **How to Set API Keys**
 
@@ -80,6 +81,23 @@ set XAI_API_KEY="your-xai-api-key"
 #### Windows (PowerShell):
 ```powershell
 $env:XAI_API_KEY="your-xai-api-key"
+```
+
+### 🔸 **Anthropic AI API Key**
+
+#### Linux/macOS:
+```bash
+export ANTHROPIC_API_KEY="your-anthropic-api-key"
+```
+
+#### Windows (Command Prompt):
+```cmd
+set ANTHROPIC_API_KEY="your-anthropic-api-key"
+```
+
+#### Windows (PowerShell):
+```powershell
+$env:ANTHROPIC_API_KEY="your-anthropic-api-key"
 ```
 
 ## 📌 **Persistent Configuration**
