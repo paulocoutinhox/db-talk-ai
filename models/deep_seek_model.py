@@ -18,7 +18,7 @@ class DeepSeekModel(BaseAIModel):
             from openai import OpenAI
         except ImportError:
             raise ImportError(
-                "The 'openai' library is not installed. Please install it using 'pip install openai' before running this feature."
+                "The 'openai' library is not installed. Please install it using 'pip install openai'."
             )
 
         self.client = OpenAI(api_key=self.api_key, base_url="https://api.deepseek.com")

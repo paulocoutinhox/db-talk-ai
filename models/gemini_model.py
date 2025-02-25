@@ -18,7 +18,7 @@ class GeminiModel(BaseAIModel):
             from openai import OpenAI
         except ImportError:
             raise ImportError(
-                "The 'openai' library is not installed. Please install it using 'pip install openai' before running this feature."
+                "The 'openai' library is not installed. Please install it using 'pip install openai'."
             )
 
         self.client = OpenAI(
