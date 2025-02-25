@@ -55,6 +55,6 @@ class AnthropicModel(BaseAIModel):
 
     def get_variants(self):
         return {
-            "claude-3-7-sonnet-latest": "Claude 3.7 Sonnet (Latest)",
-            "claude-3-5-sonnet-latest": "Claude 3.5 Sonnet (Latest)",
+            "claude-3-7-sonnet-latest": "Claude 3.7 Sonnet (200k context)",
+            "claude-3-5-sonnet-latest": "Claude 3.5 Sonnet (200k context)",
         }
