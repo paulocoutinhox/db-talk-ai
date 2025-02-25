@@ -78,7 +78,7 @@ streamlit run app.py
 
 For setting up cloud-based models like **OpenAI GPT**, **DeepSeek AI**, **Gemini AI**, and **Grok AI**, please refer to the separate guide:
 
-📖 [Cloud Models Configuration](CLOUD_MODELS.md)
+📖 [Cloud Models Configuration](docs/CLOUD_MODELS.md)
 
 ### **2. Set Custom Root Directory (Optional)**
 You can specify a custom root directory by setting the **`DB_TALK_AI_ROOT`** environment variable. If set, the app will look for the `data/` directory under this path instead of the default local `data/`.
