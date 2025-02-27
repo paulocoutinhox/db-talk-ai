@@ -8,7 +8,7 @@ class GeminiModel(BaseAIModel):
         super().__init__()
         self.client = None
         self.api_key = os.getenv("GEMINI_API_KEY")
-        self.default_variant = "gemini-2.0-pro"
+        self.default_variant = "gemini-2.0-flash"
 
     def load(self):
         if not self.api_key:
