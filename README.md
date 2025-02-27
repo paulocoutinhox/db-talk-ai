@@ -41,9 +41,9 @@ cd db-talk-ai
 
 ### **2. Create a Virtual Environment**
 ```sh
-python3 -m venv venv
-source venv/bin/activate  # macOS/Linux
-venv\Scripts\activate     # Windows
+python3 -m venv .venv
+.source venv/bin/activate  # macOS/Linux
+.venv\Scripts\activate     # Windows
 ```
 
 ### **3. Install Dependencies**
